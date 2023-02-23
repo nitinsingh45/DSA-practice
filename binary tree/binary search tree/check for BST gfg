@@ -1,0 +1,20 @@
+class Solution {
+public:
+
+    bool Check(TreeNode* root,long long int min,long long int max){
+        if(root==NULL){
+            return 1;
+        }
+       
+        if(root->val>min&&root->val<max){
+            bool left=Check(root->left,min,root->val);
+            bool right=Check(root->right,root->val,max);
+            return left&&right;
+        }
+        else
+        return 0;
+    }
+    bool isValidBST(TreeNode* root) {
+        return Check(root,INT_MIN,INT_MAX);
+    }
+};
